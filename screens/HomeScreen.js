@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Alert, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
+// Icons
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 
 const HomeScreen = () => {
@@ -55,7 +64,7 @@ const HomeScreen = () => {
         longitude,
       });
       for (let item of response) {
-        let address = `${item.name},${item.city},${item.district},${item.postalCode}`;
+        let address = `${item?.name},${item?.city},${item?.district},${item.postalCode}`;
         setCurrentLocation(address);
       }
     }
@@ -68,8 +77,29 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView>
-      <View>
-        <Text>{currentLocation}</Text>
+      {/* HEADER BAR */}
+      <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
+        <MaterialIcons name="location-pin" size={30} color="teal" />
+        <View>
+          <Text style={{ fontSize: 18, fontWeight: "600" }}>Home</Text>
+          <Text>{currentLocation}</Text>
+        </View>
+        <Pressable style={{ marginLeft: "auto" }}>
+          <Image
+            source={{
+              uri: "https://lh3.googleusercontent.com/ogw/AAEL6sj0LzuCCYKqBhKhalqLRYzRVw6auSNzGYXPzENb_g=s32-c-mo",
+            }}
+            style={{ width: 40, height: 40, borderRadius: 20 }}
+          />
+        </Pressable>
+      </View>
+      {/* SEARCH BAR */}
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={{ width: 250 }}
+          placeholder="Search for items or more ..."
+        />
+        <Feather name="search" size={24} color="teal" />
       </View>
     </SafeAreaView>
   );
@@ -77,4 +107,15 @@ const HomeScreen = () => {
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  searchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
+    margin: 10,
+    borderWidth: 0.8,
+    borderColor: "#c5c6D0",
+    borderRadius: 7,
+  },
+});
