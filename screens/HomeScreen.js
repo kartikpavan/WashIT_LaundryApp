@@ -12,6 +12,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 // Icons
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
+import Carousel from "../components/Carousel";
 
 const HomeScreen = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -43,7 +44,7 @@ const HomeScreen = () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== "granted") {
       Alert.alert(
-        "Location premission denied",
+        "Location permission denied",
         "Please allow the App to use the Location Services",
         [
           {
@@ -71,7 +72,7 @@ const HomeScreen = () => {
   };
 
   useEffect(() => {
-    check_if_location_enabled();
+    check_if_location_enabled()
     get_current_location();
   }, []);
 
@@ -101,6 +102,8 @@ const HomeScreen = () => {
         />
         <Feather name="search" size={24} color="teal" />
       </View>
+      {/* CAROUSEL */}
+      <Carousel />
     </SafeAreaView>
   );
 };
