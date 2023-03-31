@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import {
   Alert,
+  Dimensions,
   Image,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -12,8 +14,14 @@ import { SafeAreaView } from "react-native-safe-area-context";
 // Icons
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
+// Components
 import Carousel from "../components/Carousel";
+import ProductList from "../components/ProductList";
 import Services from "../components/Services";
+
+// Constants
+const windowWidth = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 const HomeScreen = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -78,36 +86,42 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{ backgroundColor: "#F0F0F0" }}>
-      {/* HEADER BAR */}
-      <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
-        <MaterialIcons name="location-pin" size={30} color="teal" />
-        <View>
-          <Text style={{ fontSize: 18, fontWeight: "600" }}>Home</Text>
-          <Text>{currentLocation}</Text>
+    <ScrollView style={{ backgroundColor: "#F0F0F0" }}>
+      <SafeAreaView>
+        {/* HEADER BAR */}
+        <View
+          style={{ flexDirection: "row", alignItems: "center", padding: 10 }}
+        >
+          <MaterialIcons name="location-pin" size={30} color="teal" />
+          <View>
+            <Text style={{ fontSize: 18, fontWeight: "600" }}>Home</Text>
+            <Text>{currentLocation}</Text>
+          </View>
+          <Pressable style={{ marginLeft: "auto" }}>
+            <Image
+              source={{
+                uri: "https://lh3.googleusercontent.com/ogw/AAEL6sj0LzuCCYKqBhKhalqLRYzRVw6auSNzGYXPzENb_g=s32-c-mo",
+              }}
+              style={{ width: 40, height: 40, borderRadius: 20 }}
+            />
+          </Pressable>
         </View>
-        <Pressable style={{ marginLeft: "auto" }}>
-          <Image
-            source={{
-              uri: "https://lh3.googleusercontent.com/ogw/AAEL6sj0LzuCCYKqBhKhalqLRYzRVw6auSNzGYXPzENb_g=s32-c-mo",
-            }}
-            style={{ width: 40, height: 40, borderRadius: 20 }}
+        {/* SEARCH BAR */}
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={{ width: 250 }}
+            placeholder="Search for items or more ..."
           />
-        </Pressable>
-      </View>
-      {/* SEARCH BAR */}
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={{ width: 250 }}
-          placeholder="Search for items or more ..."
-        />
-        <Feather name="search" size={24} color="teal" />
-      </View>
-      {/* CAROUSEL */}
-      <Carousel />
-      {/* SERVICES */}
-      <Services />
-    </SafeAreaView>
+          <Feather name="search" size={24} color="teal" />
+        </View>
+        {/* CAROUSEL */}
+        <Carousel />
+        {/* SERVICES */}
+        <Services />
+        {/* PRODUCTS */}
+        <ProductList />
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 

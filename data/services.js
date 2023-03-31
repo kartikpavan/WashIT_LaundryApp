@@ -22,6 +22,6 @@ export const services = [
   {
     id: "4",
     image: "https://cdn-icons-png.flaticon.com/128/994/994953.png",
-    name: "Utensil Washing",
+    name: "Utensil ",
   },
 ];

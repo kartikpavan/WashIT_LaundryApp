@@ -8,11 +8,17 @@ import {
   Text,
   View,
 } from "react-native";
-import { services } from "../constants/services";
+import { services } from "../data/services";
 
 const Services = () => {
   return (
-    <View style={{ padding: 10, margin: 10 }}>
+    <View
+      style={{
+        padding: 10,
+        marginVertical: 5,
+        marginHorizontal: 10,
+      }}
+    >
       <Text style={{ fontSize: 16, fontWeight: "500", marginBottom: 7 }}>
         Services
       </Text>
@@ -27,12 +33,13 @@ const Services = () => {
                 paddingHorizontal: 20,
                 marginRight: 10,
                 backgroundColor: "white",
+                borderRadius: 7,
               }}
               onPress={() => console.log(item?.name)}
             >
               <Image
                 source={{ uri: item?.image }}
-                style={{ width: 70, height: 70, resizeMode: "contain" }}
+                style={{ width: 70, height: 70, resizeMode: "cover" }}
               />
               <Text style={{ textAlign: "center", marginTop: 8 }}>
                 {item?.name}
