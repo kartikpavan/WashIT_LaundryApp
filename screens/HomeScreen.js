@@ -13,6 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import * as Location from "expo-location";
 import Carousel from "../components/Carousel";
+import Services from "../components/Services";
 
 const HomeScreen = () => {
   const [currentLocation, setCurrentLocation] = useState(null);
@@ -72,12 +73,12 @@ const HomeScreen = () => {
   };
 
   useEffect(() => {
-    check_if_location_enabled()
+    check_if_location_enabled();
     get_current_location();
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ backgroundColor: "#F0F0F0" }}>
       {/* HEADER BAR */}
       <View style={{ flexDirection: "row", alignItems: "center", padding: 10 }}>
         <MaterialIcons name="location-pin" size={30} color="teal" />
@@ -104,6 +105,8 @@ const HomeScreen = () => {
       </View>
       {/* CAROUSEL */}
       <Carousel />
+      {/* SERVICES */}
+      <Services />
     </SafeAreaView>
   );
 };

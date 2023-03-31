@@ -1,7 +1,7 @@
-const services = [
+export const services = [
   {
     id: "0",
-    image: "https://cdn-icons-png.flaticon.com/128/3899/3899253.png",
+    image: "https://cdn-icons-png.flaticon.com/128/3900/3900355.png",
     name: "Washing",
   },
   {
