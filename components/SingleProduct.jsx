@@ -4,13 +4,7 @@ import { Button, Image, Pressable, StyleSheet, Text, View } from "react-native";
 const SingleProduct = ({ item }) => {
   return (
     <View style={styles.card}>
-      <Pressable
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
+      <Pressable style={styles.contentAlign}>
         {/* Image */}
         <Image
           source={{ uri: item?.image }}
@@ -18,26 +12,8 @@ const SingleProduct = ({ item }) => {
         />
         {/* Name and Price */}
         <View>
-          <Text
-            style={{
-              width: 80,
-              fontSize: 17,
-              fontWeight: 500,
-              marginBottom: 5,
-            }}
-          >
-            {item?.name}
-          </Text>
-          <Text
-            style={{
-              fontWeight: "500",
-              color: "gray",
-              fontSize: 15,
-              width: 60,
-            }}
-          >
-            ₹{item?.price}
-          </Text>
+          <Text style={styles.itemName}>{item?.name}</Text>
+          <Text style={styles.itemPrice}>₹{item?.price}</Text>
         </View>
         {/* Button */}
         <Pressable style={{ width: 80 }}>
@@ -56,6 +32,23 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 10,
     borderRadius: 7,
+  },
+  contentAlign: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  itemName: {
+    width: 80,
+    fontSize: 17,
+    fontWeight: 500,
+    marginBottom: 5,
+  },
+  itemPrice: {
+    fontWeight: "500",
+    color: "gray",
+    fontSize: 15,
+    width: 60,
   },
   addBtn: {
     borderColor: "gray",
