@@ -11,9 +11,6 @@ const PickupScreen = () => {
    const [selectedDate, setSelectedDate] = useState("");
    const [selectedTime, setSelectedTime] = useState([]);
    const [selectedDeliveryDate, setSelectedDeliveryDate] = useState([]);
-   console.log(selectedDate);
-   console.log(selectedTime);
-   console.log(selectedDeliveryDate);
 
    const { cart } = useSelector((store) => store.cart);
    const navigation = useNavigation();
@@ -40,8 +37,13 @@ const PickupScreen = () => {
             { text: "OK", onPress: () => console.log("OK Pressed") },
          ]);
       }
+      const formatted_selected_Date = selectedDate.toString().split(" ").slice(0, 4).join(" ");
       if (selectedDate && selectedDeliveryDate && selectedTime) {
-         navigation.replace("Cart");
+         navigation.replace("Cart", {
+            selectedTime: selectedTime,
+            selectedDate: formatted_selected_Date,
+            selectedDeliveryDate: selectedDeliveryDate,
+         });
       }
    };
 
@@ -63,7 +65,7 @@ const PickupScreen = () => {
                      mode="gregorian"
                      startDate={new Date()}
                      endDate={new Date(add_7_days_to_current_day())}
-                     // initialSelectedDate={new Date()}
+                     initialSelectedDate={new Date()}
                      onSelectedDateChange={(date) => setSelectedDate(date)}
                      selectedItemWidth={170}
                      unselectedItemWidth={38}
