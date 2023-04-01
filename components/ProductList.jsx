@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { products } from "../data/products";
 import { getProducts } from "../redux/slice/productSlice";
@@ -27,5 +27,3 @@ const ProductList = () => {
 };
 
 export default ProductList;
-
-const styles = StyleSheet.create({});
