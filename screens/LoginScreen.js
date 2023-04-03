@@ -18,6 +18,7 @@ const LoginScreen = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  //! OBSERVER
   useEffect(() => {
     setIsLoading(true);
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -29,7 +30,7 @@ const LoginScreen = () => {
     });
     return unsubscribe;
   }, []);
-
+  //! LOGIN
   const loginUser = async () => {
     if (email === "" || password === "") {
       Alert.alert("Missing Credentials", "Please fill all the fields", [
@@ -45,14 +46,26 @@ const LoginScreen = () => {
       setIsLoading(true);
       const userCredentials = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredentials.user;
-
       setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
       console.log(error.message);
     }
   };
-
+  //! TEST USER LOGIN
+  const loginTestUser = async () => {
+    const test_email = "test_user@protonmail.com";
+    const test_password = "test@123";
+    try {
+      setIsLoading(true);
+      const userCredentials = await signInWithEmailAndPassword(auth, test_email, test_password);
+      const user = userCredentials.user;
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      console.log(error.message);
+    }
+  };
   return (
     <>
       {isLoading && <Spinner visible={isLoading} overlayColor="rgba(0,0,0,0.5)" />}
@@ -95,6 +108,10 @@ const LoginScreen = () => {
           <Pressable style={styles.btnContainer} onPress={loginUser}>
             <Text style={styles.btnText}>LOGIN</Text>
           </Pressable>
+          {/* Test User Login */}
+          <Pressable style={styles.testUserBtn} onPress={loginTestUser}>
+            <Text style={styles.testUserBtnText}>TEST App</Text>
+          </Pressable>
           {/* Register Screen Navigation */}
           <Pressable style={{ marginTop: 15 }} onPress={() => navigation.navigate("Register")}>
             <Text style={{ fontSize: 16, color: "#8c92ac", textAlign: "center" }}>
@@ -134,4 +151,19 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
   },
   btnText: { color: "white", fontWeight: "600", fontSize: 18, textAlign: "center" },
+  testUserBtn: {
+    width: 100,
+    borderRadius: 7,
+    padding: 5,
+    backgroundColor: "#CBE4DE",
+    marginTop: 10,
+    marginRight: "auto",
+    marginLeft: "auto",
+  },
+  testUserBtnText: {
+    color: "#2C3333",
+    textAlign: "center",
+    fontSize: 14,
+    fontWeight: 500,
+  },
 });
