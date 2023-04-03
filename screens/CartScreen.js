@@ -12,14 +12,11 @@ const CartScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const route = useRoute();
+
   const { cart } = useSelector((store) => store.cart);
   const total_cart_price = cart
     .map((item) => item.quantity * item.price)
     .reduce((total, current) => total + current, 0);
-
-  // // Converting Date object into String format
-  // const date = new Date(route.params.selectedDate);
-  // const pickupDate = date.toString().split(" ").slice(0, 4).join(" ");
 
   return (
     <>
