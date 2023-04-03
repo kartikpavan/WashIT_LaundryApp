@@ -155,6 +155,8 @@ const PickupScreen = () => {
           </View>
         </SafeAreaView>
       </ScrollView>
+      {/* Bottom Cart Info */}
+      {/* <BottomCartInfo currentScreen={"PickupScreen"} /> */}
       {total_cart_price === 0 ? null : (
         <Pressable style={styles.container}>
           <View>

@@ -5,6 +5,7 @@ import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
+import BottomCartInfo from "../components/BottomCartInfo";
 import { decreaseCartQuantity, increaseCartQuantity } from "../redux/slice/cartSlice";
 import { decreaseProductQuantity, increaseProductQuantity } from "../redux/slice/productSlice";
 
@@ -121,14 +122,12 @@ const CartScreen = () => {
                   {/*   Total*/}
                   <View style={styles.contentAlignment}>
                     <Text style={{ fontSize: 15, color: "gray" }}>Item Total</Text>
-                    <Text style={{ fontWeight: "500", fontSize: 15, color: "teal" }}>
-                      ₹{total_cart_price}.00
-                    </Text>
+                    <Text style={{ fontWeight: "500", fontSize: 15 }}>₹{total_cart_price}.00</Text>
                   </View>
                   {/*Delivery Detail*/}
                   <View style={styles.contentAlignment}>
                     <Text style={{ color: "gray", fontSize: 15 }}>Delivery charges </Text>
-                    <Text style={{ fontWeight: "500", fontSize: 15 }}>₹15.00</Text>
+                    <Text style={{ fontWeight: "500", fontSize: 15, color: "teal" }}>₹15.00</Text>
                   </View>
                   {/* Horizontal line */}
                   <View
@@ -167,8 +166,8 @@ const CartScreen = () => {
                   ></View>
                   {/* Total Payment */}
                   <View style={styles.contentAlignment}>
-                    <Text style={{ color: "gray", fontSize: 15 }}>Amount to Pay</Text>
-                    <Text style={{ fontWeight: "500", fontSize: 15, color: "teal" }}>
+                    <Text style={{ color: "gray", fontSize: 18 }}>Amount to Pay</Text>
+                    <Text style={{ fontWeight: "500", fontSize: 18 }}>
                       ₹{total_cart_price + 15}.00
                     </Text>
                   </View>
@@ -178,6 +177,7 @@ const CartScreen = () => {
           )}
         </SafeAreaView>
       </ScrollView>
+      <BottomCartInfo currentScreen={"CartScreen"} />
     </>
   );
 };

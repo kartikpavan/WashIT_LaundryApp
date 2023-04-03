@@ -22,14 +22,15 @@ const LoginScreen = () => {
   useEffect(() => {
     setIsLoading(true);
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (!authUser) setIsLoading(false);
       if (authUser) {
         setIsLoading(false);
         navigation.navigate("Home");
       }
+      if (!authUser) setIsLoading(false);
     });
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
+
   //! LOGIN
   const loginUser = async () => {
     if (email === "" || password === "") {
